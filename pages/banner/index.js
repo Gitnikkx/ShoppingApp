@@ -4,6 +4,7 @@ import { BannerCard } from "molecules";
 
 export const Banner = ({ dataApi }) => {
   console.log(dataApi?.data[0]?.attributes?.name);
+  // console.log(data);
   return (
     <>
       <Box>
@@ -18,6 +19,36 @@ export const Banner = ({ dataApi }) => {
   );
 };
 
+// fetch("http://localhost:1337/api/cards?populate=*", {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify({
+//     query: `
+//     query {
+//       cards{
+//         data{
+//           attributes{
+//             name
+//             image {
+//               data{
+//                 attributes{
+//                   url
+//                 }
+//               }
+//             }
+//           }
+//         }
+//       }
+//     }
+
+//        `,
+//   }),
+// })
+//   .then((res) => res.json())
+//   .then((data) => console.log(data));
+
 export async function getStaticProps() {
   const res = await fetch("http://localhost:1337/api/cards?populate=*");
   const dataApi = await res.json();
@@ -27,4 +58,5 @@ export async function getStaticProps() {
     },
   };
 }
+
 export default Banner;
